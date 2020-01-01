@@ -16,7 +16,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
         public AdminController(IShellFeaturesManager shellFeaturesManager, IAuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
-            _shellFeaturesManager = shellFeaturesManager;
+            _shellFeaturesManager = shellFeaturesManager;//test
 
         }
 
