@@ -16,15 +16,15 @@ namespace LefeWareLearning.TenantBilling.Models
 
         public decimal Amount { get; set; }
 
-        public PaymentMethods PaymentMethod { get; set; }
+        public CreditCardInformation CreditCardInfo { get; set; }
 
-        public MonthlyBill(DateTime billingPeriod, string description, decimal amount, PaymentMethods paymentMethod)
+        public MonthlyBill(DateTime billingPeriod, string description, decimal amount, CreditCardInformation creditCardInfo)
         {
             BillingPeriod = billingPeriod;
             Paid = true;
             Description = description;
             Amount = amount;
-            PaymentMethod = paymentMethod;
+            CreditCardInfo = creditCardInfo;
         }
     }
 }

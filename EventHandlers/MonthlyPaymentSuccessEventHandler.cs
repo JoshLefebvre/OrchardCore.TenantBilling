@@ -22,10 +22,12 @@ namespace LefeWareLearning.TenantBilling.EventHandlers
             var tenantBillingHistory = await _tenantBillingRepo.GetTenantBillingHistoryById(tenantId);
             if(tenantBillingHistory==null)
             {
-               tenantBillingHistory = new TenantBillingHistory(tenantId);
+               tenantBillingHistory = new Models.TenantBillingDetails(tenantId);
             }
 
             tenantBillingHistory.AddMonthlyBill(paymentMonth, amount, PaymentMethods.Card);
+
+            await _tenantBillingRepo.CreateAsync(tenantBillingHistory);
         }
     }
 }

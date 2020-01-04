@@ -5,8 +5,8 @@ namespace LefeWareLearning.Tenants.Repositories
 {
     public interface ITenantBillingHistoryRepository
     {
-        Task CreateAsync(TenantBillingHistory history);
+        Task CreateAsync(TenantBilling.Models.TenantBillingDetails history);
         Task DeleteAsync(string tenantId);
-        Task<TenantBillingHistory> GetTenantBillingHistoryById(string id);
+        Task<TenantBilling.Models.TenantBillingDetails> GetTenantBillingHistoryById(string id);
     }
 }

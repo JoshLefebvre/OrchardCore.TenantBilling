@@ -7,7 +7,7 @@ namespace LefeWareLearning.TenantBilling
     {
         public int Create()
         {
-            SchemaBuilder.CreateMapIndexTable(nameof(TenantBillingHistoryIndex), table => table
+            SchemaBuilder.CreateMapIndexTable(nameof(TenantBillingDetailsIndex), table => table
                 .Column<string>("TenantId")
             );
 

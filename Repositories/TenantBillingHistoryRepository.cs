@@ -22,21 +22,21 @@ namespace LefeWareLearning.TenantBilling.Repositories
             _memoryCache = memoryCache;
         }
 
-        public async Task CreateAsync(TenantBillingHistory history)
+        public async Task CreateAsync(Models.TenantBillingDetails history)
         {
             var cacheKey = $"{TenantBillingHistoryCacheKey}-{history.TenantId}";
             _session.Save(history);
             _memoryCache.Set(cacheKey, history);
         }
 
-        public async Task<TenantBillingHistory> GetTenantBillingHistoryById(string id)
+        public async Task<Models.TenantBillingDetails> GetTenantBillingHistoryById(string id)
         {
-            TenantBillingHistory history;
+            Models.TenantBillingDetails history;
             var cacheKey = $"{TenantBillingHistoryCacheKey}-{id}";
 
             if (!_memoryCache.TryGetValue(cacheKey, out history))
             {
-                history= await _session.Query<TenantBillingHistory, TenantBillingHistoryIndex>(t => t.TenantId == id).FirstOrDefaultAsync();
+                history= await _session.Query<TenantBillingDetails, TenantBillingDetailsIndex>(t => t.TenantId == id).FirstOrDefaultAsync();
                 _memoryCache.Set(cacheKey, history);
             }
 

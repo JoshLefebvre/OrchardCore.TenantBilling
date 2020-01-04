@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +13,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
         public AdminController(IShellFeaturesManager shellFeaturesManager, IAuthorizationService authorizationService)
         {
             _authorizationService = authorizationService;
-            _shellFeaturesManager = shellFeaturesManager;//test
-
+            _shellFeaturesManager = shellFeaturesManager;
         }
 
         [HttpGet]
@@ -37,7 +33,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
 
             var area = paymentType.Id;
 
-            return RedirectToAction("Index", "Payment", new { Area = area });
+            return RedirectToAction("Index", "Admin", new { Area = area });
         }
 
         [HttpGet]
