@@ -25,7 +25,9 @@ namespace LefeWareLearning.TenantBilling.EventHandlers
                tenantBillingHistory = new Models.TenantBillingDetails(tenantId);
             }
 
-            tenantBillingHistory.AddMonthlyBill(paymentMonth, amount, PaymentMethods.Card);
+            var cardInfo = new CreditCardInformation();
+            
+            tenantBillingHistory.AddMonthlyBill(paymentMonth, amount, cardInfo);
 
             await _tenantBillingRepo.CreateAsync(tenantBillingHistory);
         }

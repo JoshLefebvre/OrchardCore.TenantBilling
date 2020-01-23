@@ -14,6 +14,8 @@ using LefeWareLearning.TenantBilling;
 using LefeWareLearning.ManagePayment;
 using LefeWareLearning.Tenants.Repositories;
 using LefeWareLearning.TenantBilling.Repositories;
+using LefeWareLearning.TenantBilling.EventHandlers;
+using OrchardCore.Data.Migration;
 
 namespace LefeWareLearning.TenantPayment
 {
@@ -30,8 +32,12 @@ namespace LefeWareLearning.TenantPayment
     {
         public override void ConfigureServices(IServiceCollection services)
         {
+            //Migrations
+            services.AddScoped<IDataMigration, Migrations>();
+
             services.AddScoped<INavigationProvider, AdminMenuTenantBilling>();
             services.AddTransient<ITenantBillingHistoryRepository, TenantBillingHistoryRepository>();
+            services.AddScoped<IPaymentSuccessEventHandler, MonthlyPaymentSuccessEventHandler>();
         }
 
         public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
