@@ -9,7 +9,7 @@ namespace LefeWareLearning.TenantBilling.Indexes
         public string TenantId{ get; set; }
     }
 
-    public class TenantIndexProvider : IndexProvider<Models.TenantBillingDetails>
+    public class TenantBillingDetailsIndexProvider : IndexProvider<Models.TenantBillingDetails>
     {
         public override void Describe(DescribeContext<Models.TenantBillingDetails> context)
         {
