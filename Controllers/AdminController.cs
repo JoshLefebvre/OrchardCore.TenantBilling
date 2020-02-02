@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using LefeWareLearning.Tenants.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrchardCore.Environment.Shell;
@@ -9,11 +10,17 @@ namespace LefeWareLearning.TenantBilling.Controllers
     public class AdminController : Controller
     {
         private readonly IShellFeaturesManager _shellFeaturesManager;
+        private readonly ShellSettings _currentShellSettings;
         private readonly IAuthorizationService _authorizationService;
-        public AdminController(IShellFeaturesManager shellFeaturesManager, IAuthorizationService authorizationService)
+        private readonly ITenantBillingHistoryRepository _tenantBillingRepo;
+
+        public AdminController(IShellFeaturesManager shellFeaturesManager, IAuthorizationService authorizationService, 
+        ShellSettings currentShellSettings, ITenantBillingHistoryRepository tenantBillingRepo)
         {
             _authorizationService = authorizationService;
+            _currentShellSettings = currentShellSettings;
             _shellFeaturesManager = shellFeaturesManager;
+            _tenantBillingRepo = tenantBillingRepo;
         }
 
         [HttpGet]
@@ -23,6 +30,16 @@ namespace LefeWareLearning.TenantBilling.Controllers
             {
                 return Unauthorized();
             }
+
+            //Determine if there is an existing subscription
+            bool hasSubscription = false;
+            var tenantName = _currentShellSettings.Name;
+            var billingDetails = await _tenantBillingRepo.GetTenantBillingDetailsByNameAsync(tenantName);
+            if(billingDetails!=null)
+            {
+                hasSubscription = true;
+            }
+            
 
             //We need to ensure only 1 payment type can be enabled
             var paymentType = _shellFeaturesManager.GetEnabledFeaturesAsync().Result.Where(x=>x.Category == "LefeWare Learning Payment Types").FirstOrDefault();
@@ -43,7 +60,14 @@ namespace LefeWareLearning.TenantBilling.Controllers
             {
                 return Unauthorized();
             }
-            return View();
+
+            //Get Tenant Billing history
+            var tenantName = _currentShellSettings.Name;
+            var billingDetails = await _tenantBillingRepo.GetTenantBillingDetailsByNameAsync(tenantName);
+
+
+            //TODO: Create viewmodel
+            return View(billingDetails);
         }
     }
 }

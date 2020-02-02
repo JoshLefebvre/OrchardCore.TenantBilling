@@ -1,12 +1,35 @@
+@model LefeWareLearning.TenantBilling.Models.TenantBillingDetails
+
 <h1>Billing History</h1>
 
-<h3>Your Membership</h3>
-<div>
-    Your Plan
-</div>
+@if(Model == null)
+{
+    <p>You are currently still using the free trial</p>
+}
+else
+{
+    <div>
+        Your Plan
+    </div>
 
-<div>
-    <table>
-        <thead></thead>
-    </table>
-</div>
+
+    <div>
+        <table class="table">
+            <tr>
+                <th>Billing Period</th>
+                <th>Payment Status</th>
+                <th>Item Description</th>
+                <th>Amount</th>
+            </tr>
+            @foreach (var payment in Model.BillingHistory)
+            {
+                <tr>
+                    <td>@payment.BillingPeriod.Start - @payment.BillingPeriod.End</td>
+                    <td>@payment.Paid</td>
+                    <td>@payment.Description</td>
+                    <td>@payment.Amount</td>
+                </tr>
+            }
+        </table>
+    </div>
+}

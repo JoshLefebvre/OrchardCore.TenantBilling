@@ -5,31 +5,54 @@ using System.Text;
 using System.Threading.Tasks;
 using LefeWareLearning.TenantBilling.Models;
 using LefeWareLearning.Tenants.Repositories;
+using Microsoft.Extensions.DependencyInjection;
+using OrchardCore.Environment.Shell;
+using OrchardCore.TenantBilling.Models;
 
 namespace LefeWareLearning.TenantBilling.EventHandlers
 {
     public class MonthlyPaymentSuccessEventHandler : IPaymentSuccessEventHandler
     {
+        private readonly IShellSettingsManager _shellSettingsManager;
         private readonly ITenantBillingHistoryRepository _tenantBillingRepo;
-        public MonthlyPaymentSuccessEventHandler(ITenantBillingHistoryRepository tenantBillingRepo)
+        private readonly IShellHost _shellHost;
+
+        public MonthlyPaymentSuccessEventHandler(IShellSettingsManager shellSettingsManager, IShellHost shellHost, ITenantBillingHistoryRepository tenantBillingRepo)
         {
+            _shellSettingsManager = shellSettingsManager;
+            _shellHost = shellHost;
             _tenantBillingRepo = tenantBillingRepo;
         }
 
-        public async Task PaymentSuccess(string tenantId, DateTime paymentMonth, decimal amount)
+        public async Task PaymentSuccess(string tenantId, string tenantName, BillingPeriod billingPeriod, decimal amount)
         {
-            //Check if billing history exists
-            var tenantBillingHistory = await _tenantBillingRepo.GetTenantBillingHistoryById(tenantId);
-            if(tenantBillingHistory==null)
+
+            //TODO: Should billing info be saved in default tenant only, in the tenant's db, or both ?
+                        
+            // Retrieve settings for speficified tenant.
+            var settingsList = _shellSettingsManager.LoadSettings();
+            if (settingsList.Any())
             {
-               tenantBillingHistory = new Models.TenantBillingDetails(tenantId);
+                var settings = settingsList.SingleOrDefault(s => string.Equals(s.Name, tenantName, StringComparison.OrdinalIgnoreCase));
+                var shellScope = await _shellHost.GetScopeAsync(settings);
+                await shellScope.UsingAsync(async scope =>
+                {
+                    //Check if billing history exists
+                    var tenantBillingRepo = scope.ServiceProvider.GetServices<ITenantBillingHistoryRepository>().FirstOrDefault();
+                    var tenantBillingHistory = await tenantBillingRepo.GetTenantBillingDetailsByNameAsync(tenantName);
+                    if(tenantBillingHistory==null)
+                    {
+                        tenantBillingHistory = new TenantBillingDetails(tenantId, tenantName);
+                    }
+
+                    //TODO: Add Basic Card Info
+                    var cardInfo = new CreditCardInformation();
+                    
+                    tenantBillingHistory.AddMonthlyBill(billingPeriod, amount, cardInfo);
+
+                    await tenantBillingRepo.CreateAsync(tenantBillingHistory);
+                });
             }
-
-            var cardInfo = new CreditCardInformation();
-            
-            tenantBillingHistory.AddMonthlyBill(paymentMonth, amount, cardInfo);
-
-            await _tenantBillingRepo.CreateAsync(tenantBillingHistory);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace LefeWareLearning.TenantBilling.Indexes
     public class TenantBillingDetailsIndex : MapIndex
     {
         public string TenantId{ get; set; }
+        public string TenantName{ get; set; }
     }
 
     public class TenantBillingDetailsIndexProvider : IndexProvider<Models.TenantBillingDetails>
@@ -19,6 +20,7 @@ namespace LefeWareLearning.TenantBilling.Indexes
                     return new TenantBillingDetailsIndex
                     {
                         TenantId = tenantBillingHistory.TenantId,
+                        TenantName = tenantBillingHistory.TenantName
                     };
                 });
         }

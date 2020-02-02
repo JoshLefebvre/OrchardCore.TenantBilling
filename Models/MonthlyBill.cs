@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrchardCore.TenantBilling.Models;
 
 namespace LefeWareLearning.TenantBilling.Models
 {
     public class MonthlyBill
     {
-        public DateTime BillingPeriod { get; set; }
+        public BillingPeriod BillingPeriod { get; set; }
 
-        public bool Paid { get; set; }
+        public bool Paid { get; set; } //Todo switch to status enum
 
         public string Description { get; set; }
 
@@ -18,7 +19,7 @@ namespace LefeWareLearning.TenantBilling.Models
 
         public CreditCardInformation CreditCardInfo { get; set; }
 
-        public MonthlyBill(DateTime billingPeriod, string description, decimal amount, CreditCardInformation creditCardInfo)
+        public MonthlyBill(BillingPeriod billingPeriod, string description, decimal amount, CreditCardInformation creditCardInfo)
         {
             BillingPeriod = billingPeriod;
             Paid = true;
