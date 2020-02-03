@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LefeWareLearning.TenantBilling.Models;
 using LefeWareLearning.Tenants.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrchardCore.Environment.Shell;
+using OrchardCore.TenantBilling.ViewModels;
 
 namespace LefeWareLearning.TenantBilling.Controllers
 {
@@ -24,7 +27,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddOrUpdatePaymentInfo()
+        public async Task<IActionResult> Subscriptions()
         {
             if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageTenantBilling))
             {
@@ -33,14 +36,28 @@ namespace LefeWareLearning.TenantBilling.Controllers
 
             //Determine if there is an existing subscription
             bool hasSubscription = false;
-            var tenantName = _currentShellSettings.Name;
-            var billingDetails = await _tenantBillingRepo.GetTenantBillingDetailsByNameAsync(tenantName);
-            if(billingDetails!=null)
-            {
-                hasSubscription = true;
-            }
-            
+            var billingDetails = await _tenantBillingRepo.GetTenantBillingDetailsByNameAsync(_currentShellSettings.Name);
+            hasSubscription  = billingDetails != null ? false : true;
 
+            //Create ViewModel
+            var tenantSubscriptionInfo = new TenantSubscriptionInfoViewModel();
+            if(!hasSubscription)
+            {
+                tenantSubscriptionInfo.HasSubscription =false;
+                tenantSubscriptionInfo.PaymentMethods = new List<PaymentMethod>();
+            }
+            else
+            {
+                tenantSubscriptionInfo.HasSubscription =false;
+                tenantSubscriptionInfo.PaymentMethods = billingDetails.SubscriptionPaymentMethods;
+            }
+
+            return View(tenantSubscriptionInfo);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddNewPaymentethod()
+        {
             //We need to ensure only 1 payment type can be enabled
             var paymentType = _shellFeaturesManager.GetEnabledFeaturesAsync().Result.Where(x=>x.Category == "LefeWare Learning Payment Types").FirstOrDefault();
             if(paymentType == null)

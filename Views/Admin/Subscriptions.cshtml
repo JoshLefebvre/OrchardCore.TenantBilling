@@ -1,0 +1,33 @@
+@model OrchardCore.TenantBilling.ViewModels.TenantSubscriptionInfoViewModel
+
+@if(@Model.HasSubscription)
+{
+    <button>Stop Subscription</button> 
+
+        <table class="table">
+            <tr>
+                <th>Card Type</th>
+                <th>Last 4 Digits</th>
+                <th>Expiry</th>
+                <th>Is Active</th>
+            </tr>
+            @foreach(var paymentMethod in  @Model.PaymentMethods)
+            {
+                <tr>
+                    <td>@paymentMethod.CreditCardInfo.CardType</td>
+                    <td>@paymentMethod.CreditCardInfo.Last4Digits</td>
+                    <td>@paymentMethod.CreditCardInfo.ExpiryMonth / @paymentMethod.CreditCardInfo.ExpiryYear</td>
+                    <td>@paymentMethod.ActiveCard</td>
+                </tr>
+            }
+        </table>
+}
+else
+{
+    @*TODO: Allow for message customization from backend*@
+    <p>You currently still have X days left as part of your free subscription</p>
+}
+
+<div>
+    <a asp-controller="Admin" asp-action="AddNewPaymentethod">Add New Subscription</a>
+</div>

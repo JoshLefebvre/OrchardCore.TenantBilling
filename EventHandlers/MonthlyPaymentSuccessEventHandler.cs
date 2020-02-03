@@ -24,7 +24,7 @@ namespace LefeWareLearning.TenantBilling.EventHandlers
             _tenantBillingRepo = tenantBillingRepo;
         }
 
-        public async Task PaymentSuccess(string tenantId, string tenantName, BillingPeriod billingPeriod, decimal amount)
+        public async Task PaymentSuccess(string tenantId, string tenantName, BillingPeriod billingPeriod, decimal amount, PaymentMethod paymentMethod)
         {
 
             //TODO: Should billing info be saved in default tenant only, in the tenant's db, or both ?
@@ -44,11 +44,15 @@ namespace LefeWareLearning.TenantBilling.EventHandlers
                     {
                         tenantBillingHistory = new TenantBillingDetails(tenantId, tenantName);
                     }
-
-                    //TODO: Add Basic Card Info
-                    var cardInfo = new CreditCardInformation();
                     
-                    tenantBillingHistory.AddMonthlyBill(billingPeriod, amount, cardInfo);
+                    if(tenantBillingHistory.IsNewPaymentMethod(paymentMethod))
+                    {
+                        tenantBillingHistory.AddNewPaymentMethod(paymentMethod);
+                    }
+
+                    tenantBillingHistory.AddMonthlyBill(billingPeriod, amount, paymentMethod.CreditCardInfo);
+
+
 
                     await tenantBillingRepo.CreateAsync(tenantBillingHistory);
                 });

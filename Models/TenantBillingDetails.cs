@@ -13,7 +13,7 @@ namespace LefeWareLearning.TenantBilling.Models
 
         public string TenantName { get; private set; }
 
-        public List<PaymentInformation> PaymentInformation { get; private set; }
+        public List<PaymentMethod> SubscriptionPaymentMethods { get; private set; }
 
         public List<MonthlyBill> BillingHistory { get; private set; }
 
@@ -22,6 +22,19 @@ namespace LefeWareLearning.TenantBilling.Models
             TenantId = tenantId;
             TenantName = tenantName;
             BillingHistory = new List<MonthlyBill>();
+            SubscriptionPaymentMethods = new List<PaymentMethod>();
+        }
+
+        public void AddNewPaymentMethod(PaymentMethod paymentMethod)
+        {
+            //TODO: Itterate through list to ensure only one "active" payment type at a time
+            SubscriptionPaymentMethods.Add(paymentMethod);
+        }
+
+        public bool IsNewPaymentMethod(PaymentMethod paymentMethod)
+        {
+           //TODO: Add logic for comparing a credit card
+           return true;
         }
 
         public void AddMonthlyBill(BillingPeriod billingPeriod, decimal amount, CreditCardInformation creditCardInfo)

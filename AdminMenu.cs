@@ -29,7 +29,7 @@ namespace LefeWareLearning.ManagePayment
                 builder.Add(T["Payment"], "15", settings => settings
                         .AddClass("payment").Id("payment")
                         .Add(T["Add or Update Payment Info"], "1", client => client
-                            .Action("AddOrUpdatePaymentInfo", "Admin", new { area = "LefeWareLearning.TenantBilling" })
+                            .Action("Subscriptions", "Admin", new { area = "LefeWareLearning.TenantBilling" })
                             .Permission(Permissions.ManageTenantBilling)
                             .LocalNav())
                         .Add(T["Billing History"], "2", client => client
