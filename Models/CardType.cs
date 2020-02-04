@@ -2,8 +2,8 @@ namespace LefeWareLearning.TenantBilling.Models
 {
     public enum CardType
     {
-        Visa,
-        Amex,
-        MasterCard
+        visa,
+        amex,
+        mastercard
     }
 }

@@ -37,7 +37,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
             //Determine if there is an existing subscription
             bool hasSubscription = false;
             var billingDetails = await _tenantBillingRepo.GetTenantBillingDetailsByNameAsync(_currentShellSettings.Name);
-            hasSubscription  = billingDetails != null ? false : true;
+            hasSubscription  = billingDetails != null ? true : false;
 
             //Create ViewModel
             var tenantSubscriptionInfo = new TenantSubscriptionInfoViewModel();
@@ -48,7 +48,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
             }
             else
             {
-                tenantSubscriptionInfo.HasSubscription =false;
+                tenantSubscriptionInfo.HasSubscription =true;
                 tenantSubscriptionInfo.PaymentMethods = billingDetails.SubscriptionPaymentMethods;
             }
 
