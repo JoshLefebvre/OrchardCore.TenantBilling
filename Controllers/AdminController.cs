@@ -44,12 +44,12 @@ namespace LefeWareLearning.TenantBilling.Controllers
             if(!hasSubscription)
             {
                 tenantSubscriptionInfo.HasSubscription =false;
-                tenantSubscriptionInfo.PaymentMethods = new List<PaymentMethod>();
+                tenantSubscriptionInfo.DaysLeftInFreeSubscription = 45; //TODO: Set this value from db
             }
             else
             {
                 tenantSubscriptionInfo.HasSubscription =true;
-                tenantSubscriptionInfo.PaymentMethods = billingDetails.SubscriptionPaymentMethods;
+                tenantSubscriptionInfo.CurrentPaymentMethod = billingDetails.SubscriptionPaymentMethods.Where(x=>x.ActiveCard).FirstOrDefault();
             }
 
             return View(tenantSubscriptionInfo);
