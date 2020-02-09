@@ -18,6 +18,7 @@ using LefeWareLearning.TenantBilling.EventHandlers;
 using OrchardCore.Data.Migration;
 using YesSql.Indexes;
 using LefeWareLearning.TenantBilling.Indexes;
+using OrchardCore.TenantBilling.EventHandlers;
 
 namespace LefeWareLearning.TenantPayment
 {
@@ -43,6 +44,7 @@ namespace LefeWareLearning.TenantPayment
             
             //Event Handlers
             services.AddScoped<IPaymentSuccessEventHandler, MonthlyPaymentSuccessEventHandler>();
+            services.AddScoped<IPaymentFailedEventHandler, MonthlyPaymentFailedEventHandler>();
         }
 
         public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)

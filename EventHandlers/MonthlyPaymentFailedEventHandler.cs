@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using LefeWareLearning.TenantBilling.Models;
 using LefeWareLearning.Tenants.Repositories;
@@ -9,24 +7,23 @@ using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Environment.Shell;
 using OrchardCore.TenantBilling.Models;
 
-namespace LefeWareLearning.TenantBilling.EventHandlers
+namespace OrchardCore.TenantBilling.EventHandlers
 {
-    public class MonthlyPaymentSuccessEventHandler : IPaymentSuccessEventHandler
+    public class MonthlyPaymentFailedEventHandler: IPaymentFailedEventHandler
     {
         private readonly IShellSettingsManager _shellSettingsManager;
         private readonly ITenantBillingHistoryRepository _tenantBillingRepo;
         private readonly IShellHost _shellHost;
 
-        public MonthlyPaymentSuccessEventHandler(IShellSettingsManager shellSettingsManager, IShellHost shellHost, ITenantBillingHistoryRepository tenantBillingRepo)
+        public MonthlyPaymentFailedEventHandler(IShellSettingsManager shellSettingsManager, IShellHost shellHost, ITenantBillingHistoryRepository tenantBillingRepo)
         {
             _shellSettingsManager = shellSettingsManager;
             _shellHost = shellHost;
             _tenantBillingRepo = tenantBillingRepo;
         }
 
-        public async Task PaymentSuccess(string tenantId, string tenantName, BillingPeriod billingPeriod, decimal amount, PaymentMethod paymentMethod, string planName)
+        public async Task PaymentFailed(string tenantId, string tenantName, BillingPeriod billingPeriod, PaymentMethod paymentMethod, string planName)
         {
-
             //TODO: Should billing info be saved in default tenant only, in the tenant's db, or both ?
                         
             // Retrieve settings for speficified tenant.
@@ -42,16 +39,11 @@ namespace LefeWareLearning.TenantBilling.EventHandlers
                     var tenantBillingHistory = await tenantBillingRepo.GetTenantBillingDetailsByNameAsync(tenantName);
                     if(tenantBillingHistory==null)
                     {
-                        tenantBillingHistory = new TenantBillingDetails(tenantId, tenantName, planName);
+                        //TODO: Create custom exception
+                        throw new Exception();
+                        //tenantBillingHistory = new TenantBillingDetails(tenantId, tenantName);
                     }
-                    
-                    if(tenantBillingHistory.IsNewPaymentMethod(paymentMethod))
-                    {
-                        tenantBillingHistory.AddNewPaymentMethod(paymentMethod);
-                    }
-
-                    tenantBillingHistory.AddMonthlyBill(billingPeriod, PaymentStatus.Success, amount, paymentMethod.CreditCardInfo);
-
+                    tenantBillingHistory.AddMonthlyBill(billingPeriod, PaymentStatus.Failed, 0, paymentMethod.CreditCardInfo);
 
 
                     await tenantBillingRepo.CreateAsync(tenantBillingHistory);

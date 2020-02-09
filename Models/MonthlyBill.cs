@@ -9,20 +9,20 @@ namespace LefeWareLearning.TenantBilling.Models
 {
     public class MonthlyBill
     {
-        public BillingPeriod BillingPeriod { get; set; }
+        public BillingPeriod BillingPeriod { get; private set; }
 
-        public bool Paid { get; set; } //Todo switch to status enum
+        public PaymentStatus PaymentStatus { get; private set; } 
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
 
-        public decimal Amount { get; set; }
+        public decimal Amount { get; private set; }
 
-        public CreditCardInformation CreditCardInfo { get; set; }
+        public CreditCardInformation CreditCardInfo { get; private set; }
 
-        public MonthlyBill(BillingPeriod billingPeriod, string description, decimal amount, CreditCardInformation creditCardInfo)
+        public MonthlyBill(BillingPeriod billingPeriod, string description, PaymentStatus status, decimal amount, CreditCardInformation creditCardInfo)
         {
             BillingPeriod = billingPeriod;
-            Paid = true;
+            PaymentStatus = status;
             Description = description;
             Amount = amount;
             CreditCardInfo = creditCardInfo;

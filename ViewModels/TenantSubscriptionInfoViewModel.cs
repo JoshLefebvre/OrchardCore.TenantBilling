@@ -7,6 +7,8 @@ namespace OrchardCore.TenantBilling.ViewModels
     {
         public bool HasSubscription { get; set; }
 
+        public string CurrentPlanDescription { get; set; }
+
         public PaymentMethod CurrentPaymentMethod { get; set; }
 
         public int DaysLeftInFreeSubscription { get; set; }

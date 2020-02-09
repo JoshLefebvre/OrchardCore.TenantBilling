@@ -7,10 +7,7 @@
 <h1>Subscription</h1>
 @if(@Model.HasSubscription)
 {
-    <div>
-        <h4>Your Plan</h4>
-        <p></p>
-    </div>
+    @await Html.PartialAsync("_CurrentSubscriptionPlan", Model.CurrentPlanDescription)
 
     <div class="card w-75">
         <div class="card-body">
@@ -22,14 +19,14 @@
     </div>
 
     <div>
-        <button>Cancel Subscription</button> 
+        <button class="btn btn-danger">Cancel Subscription</button> 
     </div>
 }
 else
 {
     <p>You currently still have @Model.DaysLeftInFreeSubscription days left as part of your free subscription</p>
     <div>
-        <a asp-controller="Admin" asp-action="AddNewPaymentethod">Add New Subscription</a>
+        <a asp-controller="Admin" asp-action="AddNewPaymentethod" class="btn btn-primary">Add New Subscription</a>
     </div>
 }
 

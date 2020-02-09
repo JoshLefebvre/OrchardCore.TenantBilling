@@ -50,6 +50,7 @@ namespace LefeWareLearning.TenantBilling.Controllers
             {
                 tenantSubscriptionInfo.HasSubscription =true;
                 tenantSubscriptionInfo.CurrentPaymentMethod = billingDetails.SubscriptionPaymentMethods.Where(x=>x.ActiveCard).FirstOrDefault();
+                tenantSubscriptionInfo.CurrentPlanDescription = billingDetails.CurrentSubscriptionName;
             }
 
             return View(tenantSubscriptionInfo);

@@ -13,14 +13,17 @@ namespace LefeWareLearning.TenantBilling.Models
 
         public string TenantName { get; private set; }
 
+        public string CurrentSubscriptionName { get; private set; }
+
         public List<PaymentMethod> SubscriptionPaymentMethods { get; private set; }
 
         public List<MonthlyBill> BillingHistory { get; private set; }
 
-        public TenantBillingDetails(string tenantId, string tenantName)
+        public TenantBillingDetails(string tenantId, string tenantName, string planName)
         {
             TenantId = tenantId;
             TenantName = tenantName;
+            CurrentSubscriptionName = planName;
             BillingHistory = new List<MonthlyBill>();
             SubscriptionPaymentMethods = new List<PaymentMethod>();
         }
@@ -37,11 +40,12 @@ namespace LefeWareLearning.TenantBilling.Models
            return true;
         }
 
-        public void AddMonthlyBill(BillingPeriod billingPeriod, decimal amount, CreditCardInformation creditCardInfo)
+        public void AddMonthlyBill(BillingPeriod billingPeriod, PaymentStatus status, decimal amount, CreditCardInformation creditCardInfo)
         {
             BillingHistory.Add(
-                new MonthlyBill(billingPeriod, TeanantBillingConstants.PaymentPlans.MonthlySubscription, amount, creditCardInfo)
+                new MonthlyBill(billingPeriod, CurrentSubscriptionName, status, amount, creditCardInfo)
             );
         }
+
     }
 }
