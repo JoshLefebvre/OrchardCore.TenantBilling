@@ -27,7 +27,7 @@ namespace OrchardCore.TenantBilling.EventHandlers
             //TODO: Should billing info be saved in default tenant only, in the tenant's db, or both ?
                         
             // Retrieve settings for speficified tenant.
-            var settingsList = _shellSettingsManager.LoadSettings();
+            var settingsList = await _shellSettingsManager.LoadSettingsAsync();
             if (settingsList.Any())
             {
                 var settings = settingsList.SingleOrDefault(s => string.Equals(s.Name, tenantName, StringComparison.OrdinalIgnoreCase));
