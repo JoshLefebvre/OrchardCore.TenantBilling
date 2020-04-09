@@ -10,15 +10,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="YesSql.Core" Version="2.0.0-beta-1460" />
+    <PackageReference Include="OrchardCore.Abstractions" Version="1.0.0-rc1-12684" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-rc1-12684" />
+    <PackageReference Include="OrchardCore.Infrastructure.Abstractions" Version="1.0.0-rc1-12684" />
+    <PackageReference Include="OrchardCore.Infrastructure" Version="1.0.0-rc1-12684"  />
+    <PackageReference Include="OrchardCore.Navigation.Core" Version="1.0.0-rc1-12684" />
+    <PackageReference Include="YesSql.Core" Version="2.0.0-beta-1460"  />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\OrchardCore\OrchardCore.Abstractions\OrchardCore.Abstractions.csproj" />
+    <!--<ProjectReference Include="..\..\OrchardCore\OrchardCore.Abstractions\OrchardCore.Abstractions.csproj" />
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.DisplayManagement\OrchardCore.DisplayManagement.csproj" />
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.Infrastructure.Abstractions\OrchardCore.Infrastructure.Abstractions.csproj" />
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.Infrastructure\OrchardCore.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\OrchardCore\OrchardCore.Navigation.Core\OrchardCore.Navigation.Core.csproj" />
+    <ProjectReference Include="..\..\OrchardCore\OrchardCore.Navigation.Core\OrchardCore.Navigation.Core.csproj" />-->
   </ItemGroup>
 
 </Project>
