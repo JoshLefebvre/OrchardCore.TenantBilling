@@ -14,6 +14,7 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: "Nuget Restore"
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
@@ -21,12 +22,14 @@ steps:
     nugetConfigPath: 'Src/nuget.config'
     
 - task: DotNetCoreCLI@2
+  displayName: "Nuget Pack"
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
+  displayName: "Nuget Push"
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
