@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+
+
+    <PackageId>OrchardCore.TenantBilling</PackageId>
+    <VersionPrefix>1.0.0</Version>
+    <VersionSuffix>beta</VersionSuffix>
+    <Authors>LefeWare Learning</Authors>
+    <Description></Description>
+    <IsPackable>true</IsPackable>
+
   </PropertyGroup>
 
   <ItemGroup>
