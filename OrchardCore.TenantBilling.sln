@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCore.TenantBilling", "..\..\OrchardCore.TenantBilling\OrchardCore.TenantBilling.csproj", "{A4100F17-21F6-4F21-ADD2-A67F8D0203DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4100F17-21F6-4F21-ADD2-A67F8D0203DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4100F17-21F6-4F21-ADD2-A67F8D0203DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4100F17-21F6-4F21-ADD2-A67F8D0203DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4100F17-21F6-4F21-ADD2-A67F8D0203DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0D37F38-55FE-470B-8176-0219563F9590}
+	EndGlobalSection
+EndGlobal
