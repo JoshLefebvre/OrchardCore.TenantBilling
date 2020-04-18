@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using LefeWareLearning.TenantBilling.Models;
 using OrchardCore.TenantBilling.Models;
 
 namespace OrchardCore.TenantBilling.EventHandlers

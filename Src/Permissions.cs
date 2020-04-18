@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OrchardCore.Security.Permissions;
 
-namespace LefeWareLearning.TenantBilling
+namespace OrchardCore.TenantBilling
 {
     public class Permissions : IPermissionProvider
     {

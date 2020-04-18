@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using LefeWareLearning.TenantBilling.Models;
+using OrchardCore.TenantBilling.Models;
 
 namespace OrchardCore.TenantBilling.ViewModels
 {

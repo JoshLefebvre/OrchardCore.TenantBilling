@@ -1,4 +1,4 @@
-namespace LefeWareLearning.TenantBilling
+namespace OrchardCore.TenantBilling
 {
     public static class TeanantBillingConstants
     {

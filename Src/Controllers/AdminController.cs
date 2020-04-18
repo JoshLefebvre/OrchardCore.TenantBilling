@@ -1,14 +1,13 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LefeWareLearning.TenantBilling.Models;
-using LefeWareLearning.Tenants.Repositories;
+using OrchardCore.TenantBilling;
+using OrchardCore.Tenants.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrchardCore.Environment.Shell;
 using OrchardCore.TenantBilling.ViewModels;
 
-namespace LefeWareLearning.TenantBilling.Controllers
+namespace OrchardCore.TenantBilling.Controllers
 {
     public class AdminController : Controller
     {

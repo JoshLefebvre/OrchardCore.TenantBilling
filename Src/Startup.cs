@@ -9,18 +9,15 @@ using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.Security.Permissions;
-using OrchardCore.Settings;
-using LefeWareLearning.TenantBilling;
-using LefeWareLearning.ManagePayment;
-using LefeWareLearning.Tenants.Repositories;
-using LefeWareLearning.TenantBilling.Repositories;
-using LefeWareLearning.TenantBilling.EventHandlers;
+using OrchardCore.TenantBilling;
+using OrchardCore.Tenants.Repositories;
+using OrchardCore.TenantBilling.Repositories;
+using OrchardCore.TenantBilling.EventHandlers;
 using OrchardCore.Data.Migration;
 using YesSql.Indexes;
-using LefeWareLearning.TenantBilling.Indexes;
-using OrchardCore.TenantBilling.EventHandlers;
+using OrchardCore.TenantBilling.Indexes;
 
-namespace LefeWareLearning.TenantPayment
+namespace OrchardCore.TenantPayment
 {
     public class Startup : StartupBase
     {

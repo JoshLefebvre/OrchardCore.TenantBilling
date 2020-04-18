@@ -1,11 +1,10 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using LefeWareLearning.TenantBilling.Models;
-using LefeWareLearning.Tenants.Repositories;
+using OrchardCore.TenantBilling.Models;
+using OrchardCore.Tenants.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Environment.Shell;
-using OrchardCore.TenantBilling.Models;
 
 namespace OrchardCore.TenantBilling.EventHandlers
 {

@@ -1,8 +1,8 @@
 using System;
-using LefeWareLearning.TenantBilling.Models;
+using OrchardCore.TenantBilling.Models;
 using YesSql.Indexes;
 
-namespace LefeWareLearning.TenantBilling.Indexes
+namespace OrchardCore.TenantBilling.Indexes
 {
     public class TenantBillingDetailsIndex : MapIndex
     {

@@ -1,13 +1,13 @@
 using System;
 using System.Threading.Tasks;
-using LefeWareLearning.TenantBilling.Indexes;
-using LefeWareLearning.TenantBilling.Models;
-using LefeWareLearning.Tenants.Repositories;
+using OrchardCore.TenantBilling.Indexes;
+using OrchardCore.TenantBilling.Models;
+using OrchardCore.Tenants.Repositories;
 using Microsoft.Extensions.Caching.Memory;
 using OrchardCore.Environment.Cache;
 using YesSql;
 
-namespace LefeWareLearning.TenantBilling.Repositories
+namespace OrchardCore.TenantBilling.Repositories
 {
     public class TenantBillingHistoryRepository : ITenantBillingHistoryRepository
     {

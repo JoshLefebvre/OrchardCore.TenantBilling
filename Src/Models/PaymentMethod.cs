@@ -1,4 +1,4 @@
-namespace LefeWareLearning.TenantBilling.Models
+namespace OrchardCore.TenantBilling.Models
 {
     public class PaymentMethod
     {

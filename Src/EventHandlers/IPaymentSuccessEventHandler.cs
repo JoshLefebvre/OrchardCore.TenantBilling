@@ -1,8 +1,7 @@
 using System.Threading.Tasks;
-using LefeWareLearning.TenantBilling.Models;
 using OrchardCore.TenantBilling.Models;
 
-namespace LefeWareLearning.TenantBilling
+namespace OrchardCore.TenantBilling
 {
     public interface IPaymentSuccessEventHandler
     {

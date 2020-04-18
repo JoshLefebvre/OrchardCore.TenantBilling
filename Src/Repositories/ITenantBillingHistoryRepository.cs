@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using LefeWareLearning.TenantBilling.Models;
+using OrchardCore.TenantBilling.Models;
 
-namespace LefeWareLearning.Tenants.Repositories
+namespace OrchardCore.Tenants.Repositories
 {
     public interface ITenantBillingHistoryRepository
     {

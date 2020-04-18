@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OrchardCore.TenantBilling.Models;
 
-namespace LefeWareLearning.TenantBilling.Models
+namespace OrchardCore.TenantBilling.Models
 {
     public class TenantBillingDetails
     {

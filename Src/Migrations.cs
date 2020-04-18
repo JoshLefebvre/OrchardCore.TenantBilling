@@ -1,7 +1,7 @@
-using LefeWareLearning.TenantBilling.Indexes;
+using OrchardCore.TenantBilling.Indexes;
 using OrchardCore.Data.Migration;
 
-namespace LefeWareLearning.TenantBilling
+namespace OrchardCore.TenantBilling
 {
     public class Migrations : DataMigration
     {
