@@ -4,7 +4,7 @@ namespace OrchardCore.TenantBilling
     {
         public static class Features
         {
-            public const string TenantBilling = "LefeWareLearning.TenantBilling";
+            public const string TenantBilling = "OrchardCore.TenantBilling";
         }
 
         public static class PaymentPlans

@@ -9,7 +9,7 @@ using OrchardCore.Modules.Manifest;
 )]
 
 [assembly: Feature(
-    Id = "LefeWareLearning.TenantBilling",
+    Id = "OrchardCore.TenantBilling",
     Name = "TenantBilling",
     Category = "LefeWare Learning Core",
     Description = "Allows users to view and update billing information",

@@ -23,7 +23,7 @@ namespace OrchardCore.TenantPayment
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IPermissionProvider, Permissions>();
+            services.AddScoped<IPermissionProvider, OrchardCore.TenantBilling.Permissions>();
         }
     }
 
