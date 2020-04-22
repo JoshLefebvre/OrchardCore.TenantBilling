@@ -5,13 +5,13 @@ using OrchardCore.Modules.Manifest;
     Author = "LefeWareLearning",
     Website = "https://github.com/JoshLefebvre",
     Version = "1.0.0",
-    Category = "Tenant Billing"
+    Category = "Payment"
 )]
 
 [assembly: Feature(
     Id = "OrchardCore.TenantBilling",
     Name = "TenantBilling",
-    Category = "LefeWare Learning Core",
+    Category = "Payment",
     Description = "Allows users to view and update billing information",
     Dependencies = new[]
     {
