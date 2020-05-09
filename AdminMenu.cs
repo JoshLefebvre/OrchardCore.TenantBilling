@@ -25,7 +25,7 @@ namespace OrchardCore.TenantBilling
         {
             if (String.Equals(name, "admin", StringComparison.OrdinalIgnoreCase))
             {
-                builder.Add(T["Payment"], "15", settings => settings
+                builder.Add(T["Payment"], "19", settings => settings
                         .AddClass("payment").Id("payment")
                         .Add(T["Add or Update Payment Info"], "1", client => client
                             .Action("Subscriptions", "Admin", new { area = "OrchardCore.TenantBilling" })
