@@ -1,5 +1,6 @@
 using OrchardCore.TenantBilling.Indexes;
 using OrchardCore.Data.Migration;
+using YesSql.Sql;
 
 namespace OrchardCore.TenantBilling
 {
@@ -7,7 +8,7 @@ namespace OrchardCore.TenantBilling
     {
         public int Create()
         {
-            SchemaBuilder.CreateMapIndexTable(nameof(TenantBillingDetailsIndex), table => table
+            SchemaBuilder.CreateMapIndexTable<TenantBillingDetailsIndex>(table => table
                 .Column<string>("TenantId")
                 .Column<string>("TenantName")
             );
