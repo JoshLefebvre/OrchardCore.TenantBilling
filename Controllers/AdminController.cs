@@ -56,7 +56,7 @@ namespace OrchardCore.TenantBilling.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddNewPaymentethod()
+        public IActionResult AddNewPaymentethod()
         {
             //We need to ensure only 1 payment type can be enabled
             var paymentType = _shellFeaturesManager.GetEnabledFeaturesAsync().Result.Where(x=>x.Category == "LefeWare Learning Payment Types").FirstOrDefault();

@@ -22,11 +22,13 @@ namespace OrchardCore.TenantBilling.Repositories
             _memoryCache = memoryCache;
         }
 
-        public async Task CreateAsync(TenantBillingDetails tenantBillingDetails)
+        public Task CreateAsync(TenantBillingDetails tenantBillingDetails)
         {
             var cacheKey = $"{TenantBillingHistoryCacheKey}-{tenantBillingDetails.TenantName}";
             _session.Save(tenantBillingDetails);
             _memoryCache.Set(cacheKey, tenantBillingDetails);
+
+            return Task.CompletedTask;
         }
 
         public async Task<TenantBillingDetails> GetTenantBillingDetailsByNameAsync(string tenantName)
@@ -44,7 +46,7 @@ namespace OrchardCore.TenantBilling.Repositories
         }
 
 
-        public async Task DeleteAsync(string tenantId)
+        public Task DeleteAsync(string tenantId)
         {
             throw new NotImplementedException();
         }
