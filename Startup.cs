@@ -40,8 +40,8 @@ namespace OrchardCore.TenantPayment
             services.AddTransient<ITenantBillingHistoryRepository, TenantBillingHistoryRepository>();
             
             //Event Handlers
-            services.AddScoped<IPaymentSuccessEventHandler, MonthlyPaymentSuccessEventHandler>();
-            services.AddScoped<IPaymentFailedEventHandler, MonthlyPaymentFailedEventHandler>();
+            services.AddScoped<ISubscriptionPaymentSuccessEventHandler, MonthlyPaymentSuccessEventHandler>();
+            services.AddScoped<ISubscriptionPaymentFailedEventHandler, MonthlyPaymentFailedEventHandler>();
         }
 
         public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)

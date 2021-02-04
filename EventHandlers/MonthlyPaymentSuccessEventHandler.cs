@@ -10,7 +10,7 @@ using OrchardCore.Environment.Shell;
 
 namespace OrchardCore.TenantBilling.EventHandlers
 {
-    public class MonthlyPaymentSuccessEventHandler : IPaymentSuccessEventHandler
+    public class MonthlyPaymentSuccessEventHandler : ISubscriptionPaymentSuccessEventHandler
     {
         private readonly IShellSettingsManager _shellSettingsManager;
         private readonly ITenantBillingHistoryRepository _tenantBillingRepo;
@@ -23,7 +23,7 @@ namespace OrchardCore.TenantBilling.EventHandlers
             _tenantBillingRepo = tenantBillingRepo;
         }
 
-        public async Task PaymentSuccess(string tenantId, string tenantName, BillingPeriod billingPeriod, decimal amount, PaymentMethod paymentMethod, string planName)
+        public async Task SubscriptionPaymentSuccess(string tenantId, string tenantName, BillingPeriod billingPeriod, decimal amount, PaymentMethod paymentMethod, string planName)
         {
 
             //TODO: Should billing info be saved in default tenant only, in the tenant's db, or both ?
